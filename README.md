@@ -102,8 +102,11 @@ module.exports = {
   // pm2 默认会加载 sourcemap，解决 sentry sourcemap 不生效的问题
   source_map_support: false,
   watch: false,
+  // 如果有定时任务要特别注意，会推送两次
   instances: 2,
-  filter_env: ['APP_ENV', 'MYSQL_', 'K8S_', 'FE_'],
+  // 含义理解反了
+  // filter_env: ['APP_ENV', 'MYSQL_', 'K8S_', 'FE_'],
+  filter_env: ['_HOST_', '_PORT_'],
   env: {
     NODE_ENV: 'production',
     API_ENV: process.env.API_ENV,
@@ -115,6 +118,7 @@ module.exports = {
 
 `pm2@4.2.1` 不支持 `filter_env` 配置。
 
+![7Z3HLa_wecom-temp-84775837c6d62e57982f939756d86b56](https://cdn.byai.com/static/images/7Z3HLa_wecom-temp-84775837c6d62e57982f939756d86b56.png)
 
 推荐文章
 
@@ -145,6 +149,25 @@ module.exports = {
 ## Error saving credentials: error storing credentials - err: exit status 1, out: `error storing credentials - err: exit status 1, out: `User interaction is not allowed.
 
 
-使用命令 `security unlock-keychain`
+~~使用命令 `security unlock-keychain`~~
+
+删除钥匙串里面的 docker 相关的内容， `rm /usr/local/bin/docker-credential-osxkeychain`  就可以登录成功了。
+
+![xIT3g4_RyavTg](https://cdn.byai.com/static/images/xIT3g4_RyavTg.png)
+
+
+> Go to you OSX keychains (through spotlight). Search for docker and delete all saved credentials under the login keychains. Delete the config.json and try to login again
+> https://stackoverflow.com/questions/45713562/docker-push-to-docker-hub-unauthorized-error-on-mac
 
 - 无法在远程Mac上进行Docker登录(保存凭据时出错) | 码农家园 [https://www.codenong.com/af6adef956b4447c90c2/](https://www.codenong.com/af6adef956b4447c90c2/)
+- https://github.com/docker/for-mac/issues/2295#issuecomment-370588420
+
+
+## Error: connect EADDRNOTAVAIL 172.16.x.x:389 - Local (10.10.x.x:0)
+
+`netstat -an | grep -e tcp -e udp | wc -l` 查看相关的连接数，一台服务器最大的 TCP 的连接数是 65535。
+
+![tGdLa1_x7C05X](https://cdn.byai.com/static/images/tGdLa1_x7C05X.png)
+
+测试发现 LDAP 的连接数一直狂增。
+![AORkVM_wecom-temp-026d08d485ff4c518c1ef3d335bd8e8c](https://cdn.byai.com/static/images/AORkVM_wecom-temp-026d08d485ff4c518c1ef3d335bd8e8c.png)
