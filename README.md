@@ -116,9 +116,10 @@ module.exports = {
 
 ![l2BhFM_hzsTbF](https://cdn.byai.com/static/images/l2BhFM_hzsTbF.png)
 
-`pm2@4.2.1` 不支持 `filter_env` 配置。
+**注意📢:** `pm2@4.2.1` 不支持 `filter_env` 配置。
 
 ![7Z3HLa_wecom-temp-84775837c6d62e57982f939756d86b56](https://cdn.byai.com/static/images/7Z3HLa_wecom-temp-84775837c6d62e57982f939756d86b56.png)
+
 
 推荐文章
 
@@ -141,7 +142,8 @@ module.exports = {
 
 
 ## denied: requested access to the resource is denied 登录 harbor 报错。
-因为使用连接的 `mac` 机器使用了 `shell` 登录， 需要重新登录
+
+因为使用连接的 `mac` 机器使用了 `shell` 登录， 需要重新登录。
 
 - harbor解决docker push镜像时denied: requested access to the resource is denied : docker | 少将全栈 [https://www.whatled.com/post-6459.html](https://www.whatled.com/post-6459.html)
 
@@ -165,9 +167,26 @@ module.exports = {
 
 ## Error: connect EADDRNOTAVAIL 172.16.x.x:389 - Local (10.10.x.x:0)
 
-`netstat -an | grep -e tcp -e udp | wc -l` 查看相关的连接数，一台服务器最大的 TCP 的连接数是 65535。
+`netstat -an | grep -e tcp -e udp | wc -l` 查看相关的连接数，一台服务器作为client最大 tcp 连接数为 65535。
 
 ![tGdLa1_x7C05X](https://cdn.byai.com/static/images/tGdLa1_x7C05X.png)
 
 测试发现 LDAP 的连接数一直狂增。
+
 ![AORkVM_wecom-temp-026d08d485ff4c518c1ef3d335bd8e8c](https://cdn.byai.com/static/images/AORkVM_wecom-temp-026d08d485ff4c518c1ef3d335bd8e8c.png)
+
+
+推荐文章
+
+- Node.js抛异常ECONNRESET退出｜YYGCui's blog [http://blog.cuicc.com/blog/2017/03/26/nodejs-ECONNRESET/](http://blog.cuicc.com/blog/2017/03/26/nodejs-ECONNRESET/)
+
+
+参考文章
+  
+- 单服务器最大tcp连接数及调优汇总 - duanxz - 博客园 [https://www.cnblogs.com/duanxz/p/4464178.html](https://www.cnblogs.com/duanxz/p/4464178.html)
+- 服务器最大TCP连接数及调优汇总_走向程序的康庄大道-CSDN博客_服务器最大连接数怎么设置 [https://blog.csdn.net/OiteBody/article/details/111640298](https://blog.csdn.net/OiteBody/article/details/111640298)
+- 一台Linux服务器可以负载多少个连接？ - 掘金 [https://juejin.cn/post/6844903937187774477](https://juejin.cn/post/6844903937187774477)
+- 详解Linux服务器最大tcp连接数 - 陌上归人的博客 - 博客园 [https://www.cnblogs.com/fjping0606/p/4729389.html](https://www.cnblogs.com/fjping0606/p/4729389.html)
+- 一台机器最多能撑多少个TCP连接? 今天掰扯清楚！ - 知乎 [https://zhuanlan.zhihu.com/p/290651392](https://zhuanlan.zhihu.com/p/290651392)
+- 漫画 | 一台Linux服务器最多能支撑多少个TCP连接？ - 文章详情 [https://z.itpub.net/article/detail/6CE774C020CABC43FB0B9C79C97C2C4D](https://z.itpub.net/article/detail/6CE774C020CABC43FB0B9C79C97C2C4D)
+- 高并发下场景下，使用nodejs产生的问题 - CNode技术社区 [https://cnodejs.org/topic/5d303e32b2b9222961dabe89](https://cnodejs.org/topic/5d303e32b2b9222961dabe89)
